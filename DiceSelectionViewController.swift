@@ -76,6 +76,5 @@ extension DiceSelectionViewController: UITableViewDelegate {
 extension DiceSelectionViewController: DiceRollerDelegate {
 	func diceRoller(didRoll die: Die , result: Int) {
 		rollHistory[die.name] = result
-        tableViewController.reloadData()
 	}
 }

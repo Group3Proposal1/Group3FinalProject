@@ -12,8 +12,7 @@ import UIKit
 class DiceViewController: UIViewController {
 	@IBOutlet weak var nameLabel: UILabel!
 	@IBOutlet weak var descriptionLabel: UILabel!
-    @IBOutlet weak var modifierTextField: UITextField!
-    @IBOutlet weak var resultLabel: UILabel!
+	@IBOutlet weak var resultLabel: UILabel!
 	@IBOutlet weak var diceImageView: UIImageView!
 	
 	var selectedDie: Die!
@@ -32,24 +31,22 @@ class DiceViewController: UIViewController {
 		}
 	}
     
-    //animation function
     func animateDiceRoll() {
         let animation = CABasicAnimation(keyPath: "position")
         animation.duration = 0.1
         animation.repeatCount = 4
         animation.autoreverses = true
         animation.fromValue = NSValue(cgPoint: CGPoint(x: diceImageView.center.x - 8, y: diceImageView.center.y))
-        animation.toValue = NSValue(cgPoint: CGPoint(x: diceImageView.center.x - 8, y: diceImageView.center.y))
+        animation.toValue = NSValue(cgPoint: CGPoint(x: diceImageView.center.x + 8, y: diceImageView.center.y))
+        
         diceImageView.layer.add(animation, forKey: "position")
     }
-	
+    
 	@IBAction func rollButtonTapped(_ sender: UIButton) {
-        //checks if input is valid if not then default to 0
-        let modifier = Int(modifierTextField.text ?? "") ?? 0
 		var die = selectedDie!
-        let result = die.rollDie(with: modifier)
+		let result = die.rollDie()
         
-        animateDiceRoll() //trigger animation
+        animateDiceRoll()
         
 		resultLabel.text = "\(result)"
 		diceImageView.image = UIImage(named: selectedDie.imageName)

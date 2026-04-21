@@ -28,10 +28,10 @@ struct Die {
 		self.imageName = imageName
 	}
 	
-    mutating func rollDie(with modifier: Int = 0) -> Int {
+	mutating func rollDie() -> Int {
 		let result = Int.random(in: 1...sides)
-		lastRoll = result + modifier
-		return lastRoll!
+		lastRoll = result
+		return result
 	}
 }
 
