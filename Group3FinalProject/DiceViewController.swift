@@ -55,6 +55,7 @@ class DiceViewController: UIViewController {
 		var die = selectedDie!
         let result = die.rollDie(with: modifier)
         
+		AudioServicesPlaySystemSound(soundId)
         animateDiceRoll() //trigger animation
         
 		resultLabel.text = "\(result)"
