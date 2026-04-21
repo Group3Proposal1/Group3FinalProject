@@ -8,6 +8,7 @@
 //	This Will Hold The Selected Die Information, The Roll Button To Generated a Random Number, And Their Roll History
 
 import UIKit
+import AudioToolbox
 
 class DiceViewController: UIViewController {
 	@IBOutlet weak var nameLabel: UILabel!
@@ -18,6 +19,7 @@ class DiceViewController: UIViewController {
 	
 	var selectedDie: Die!
 	weak var delegate: DiceRollerDelegate?
+	var soundId: SystemSoundID = 0
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -29,6 +31,10 @@ class DiceViewController: UIViewController {
 			resultLabel.text = "Your Last Roll Was \(last)"
 		} else {
 			resultLabel.text = "Roll The Dice"
+		}
+		
+		if let soundURL = Bundle.main.url(forResource: "roll", withExtension: "wav"){
+			AudioServicesCreateSystemSoundID(soundURL as CFURL, &soundId)
 		}
 	}
     
