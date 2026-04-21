@@ -46,7 +46,7 @@ extension DiceSelectionViewController: UITableViewDataSource {
 		}
 		let die = dice[indexPath.row]
 		cell.nameLabel.text = die.name
-		cell.descriptionLabel.text = "\(dice.count) Sided Die"
+		cell.descriptionLabel.text = "\(die.sides) Sided Die"
 		
 		if let last = rollHistory[die.name] {
 			cell.lastRollLabel.text = "Last Roll Is \(last)"
