@@ -12,7 +12,8 @@ import AudioToolbox
 
 class DiceViewController: UIViewController {
 	@IBOutlet weak var nameLabel: UILabel!
-	@IBOutlet weak var descriptionLabel: UILabel!
+	@IBOutlet weak var descriptionText: UITextView!
+    @IBOutlet weak var modifierLabel: UILabel!
     @IBOutlet weak var modifierTextField: UITextField!
     @IBOutlet weak var resultLabel: UILabel!
 	@IBOutlet weak var diceImageView: UIImageView!
@@ -23,9 +24,26 @@ class DiceViewController: UIViewController {
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
+        
+        nameLabel.layer.cornerRadius = 10
+        nameLabel.layer.masksToBounds = true
+        
+        descriptionText.layer.cornerRadius = 10
+        descriptionText.layer.masksToBounds = true
+        
+        modifierLabel.layer.cornerRadius = 10
+        modifierLabel.layer.masksToBounds = true
+        
+        modifierTextField.layer.cornerRadius = 10
+        modifierTextField.layer.masksToBounds = true
+        
+        resultLabel.layer.cornerRadius = 10
+        resultLabel.layer.masksToBounds = true
+
+
 		
 		nameLabel.text = selectedDie.name
-		descriptionLabel.text = selectedDie.description
+		descriptionText.text = selectedDie.description
 		
 		if let last = selectedDie.lastRoll {
 			resultLabel.text = "Your Last Roll Was \(last)"
