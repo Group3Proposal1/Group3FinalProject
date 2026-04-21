@@ -39,16 +39,15 @@ class DiceViewController: UIViewController {
         
         resultLabel.layer.cornerRadius = 10
         resultLabel.layer.masksToBounds = true
-
-
 		
 		nameLabel.text = selectedDie.name
 		descriptionText.text = selectedDie.description
+		diceImageView.image = UIImage(named: selectedDie.imageName)
 		
 		if let last = selectedDie.lastRoll {
 			resultLabel.text = "Your Last Roll Was \(last)"
 		} else {
-			resultLabel.text = "Roll The Dice"
+			resultLabel.text = ""
 		}
 		
 		if let soundURL = Bundle.main.url(forResource: "roll", withExtension: "wav"){
@@ -59,11 +58,11 @@ class DiceViewController: UIViewController {
     //animation function
     func animateDiceRoll() {
         let animation = CABasicAnimation(keyPath: "position")
-        animation.duration = 0.1
+        animation.duration = 0.01
         animation.repeatCount = 4
         animation.autoreverses = true
-        animation.fromValue = NSValue(cgPoint: CGPoint(x: diceImageView.center.x - 8, y: diceImageView.center.y))
-        animation.toValue = NSValue(cgPoint: CGPoint(x: diceImageView.center.x - 8, y: diceImageView.center.y))
+        animation.fromValue = NSValue(cgPoint: CGPoint(x: diceImageView.center.x - 12, y: diceImageView.center.y))
+        animation.toValue = NSValue(cgPoint: CGPoint(x: diceImageView.center.x - 12, y: diceImageView.center.y))
         diceImageView.layer.add(animation, forKey: "position")
     }
 	
