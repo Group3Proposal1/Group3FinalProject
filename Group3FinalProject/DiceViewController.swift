@@ -25,6 +25,7 @@ class DiceViewController: UIViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
         
+        //Label and text styling
         nameLabel.layer.cornerRadius = 10
         nameLabel.layer.masksToBounds = true
         
@@ -58,11 +59,11 @@ class DiceViewController: UIViewController {
     //animation function
     func animateDiceRoll() {
         let animation = CABasicAnimation(keyPath: "position")
-        animation.duration = 0.01
-        animation.repeatCount = 4
+        animation.duration = 0.1
+        animation.repeatCount = 5
         animation.autoreverses = true
-        animation.fromValue = NSValue(cgPoint: CGPoint(x: diceImageView.center.x - 12, y: diceImageView.center.y))
-        animation.toValue = NSValue(cgPoint: CGPoint(x: diceImageView.center.x - 12, y: diceImageView.center.y))
+        animation.fromValue = NSValue(cgPoint: CGPoint(x: diceImageView.center.x - 8, y: diceImageView.center.y))
+        animation.toValue = NSValue(cgPoint: CGPoint(x: diceImageView.center.x + 8, y: diceImageView.center.y))
         diceImageView.layer.add(animation, forKey: "position")
     }
 	
@@ -72,7 +73,8 @@ class DiceViewController: UIViewController {
 		var die = selectedDie!
         let result = die.rollDie(with: modifier)
         
-		AudioServicesPlaySystemSound(soundId)
+		AudioServicesPlaySystemSound(soundId) //trigger sound
+        
         animateDiceRoll() //trigger animation
         
 		resultLabel.text = "\(result)"
